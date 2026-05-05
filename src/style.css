@@ -1,4 +1,4 @@
-/* 
+/*
   Modern CSS Foundation
   Intent: Establish a robust design system using CSS variables and modern layout techniques.
   Expected Result: A responsive base with fluid typography and a clean bento grid layout.
@@ -16,35 +16,40 @@
   /* Color Palette & Spacing
      Intent: Provide a consistent theme that respects system light/dark preferences.
   */
-  --bg-color: #ffffff;
-  --text-color: #111111;
+  --bg-color: light-dark(#ffffff, #000000);
+  --text-color: light-dark(#111111, #f5f5f7);
+  --link-color: #fe6b47;
+  --link-color-visited: light-dark(#833320, #a87b70);
+  --card-bg: light-dark(#eeeeee, #1c1c1e);
+  --header-bg: light-dark(rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.8));
+
   --accent-color: #673ab8;
-  --card-bg: #f5f5f7;
-  --header-bg: rgba(255, 255, 255, 0.8);
   --border-radius: 24px;
   --spacing-lg: 4rem;
   --spacing-md: 2rem;
   --spacing-sm: 1rem;
-  
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
   line-height: 1.5;
   background-color: var(--bg-color);
   color: var(--text-color);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #000000;
-    --text-color: #f5f5f7;
-    --card-bg: #1c1c1e;
-    --header-bg: rgba(0, 0, 0, 0.8);
-  }
 }
 
 body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+}
+
+a {
+  color: var(--link-color);
+  &:visited {
+    color: var(--link-color-visited);
+  }
 }
 
 /* Floating Header
@@ -92,7 +97,7 @@ body {
   background: var(--card-bg);
   border-radius: var(--border-radius);
   padding: var(--spacing-md);
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
   border: 1px solid rgba(128, 128, 128, 0.05);
   display: flex;
   flex-direction: column;
@@ -105,15 +110,42 @@ body {
 }
 
 /* Typography Helpers */
-h1 { font-size: var(--font-size-h1); margin: 0; letter-spacing: -0.04em; }
-h2 { font-size: var(--font-size-h2); margin: 0; letter-spacing: -0.03em; }
-p { font-size: var(--font-size-base); opacity: 0.8; }
+h1 {
+  font-size: var(--font-size-h1);
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+h2 {
+  font-size: var(--font-size-h2);
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+p {
+  font-size: var(--font-size-base);
+  opacity: 0.8;
+}
+
+.container {
+  min-width: 40%;
+  max-width: 60%;
+  width: min-content;
+  place-self: center;
+  margin: 0 auto;
+  display: flex;
+  padding: 2vw;
+  flex-flow: column nowrap;
+}
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
   .bento-container {
     grid-template-columns: 1fr;
     margin: var(--spacing-md) auto;
+  }
+
+  .container {
+    width: 95%;
+    max-width: 95%;
   }
 }
 
@@ -129,7 +161,7 @@ p { font-size: var(--font-size-base); opacity: 0.8; }
 
 /* Rust Tile - Technical and Terminal-like */
 .tile-rust {
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
   background: #121212;
   color: #4caf50;
   border: 1px solid #333;
@@ -152,17 +184,21 @@ p { font-size: var(--font-size-base); opacity: 0.8; }
 
 /* Polish: Mouse-follow parallax effect placeholder
    Intent: Suggest depth and interactivity.
-   Note: We'll implement the actual logic in Preact if needed, 
+   Note: We'll implement the actual logic in Preact if needed,
    but we can start with a smooth transition.
 */
-.bento-tile {
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-}
 
 /* Glassmorphism utility */
-.glass {
+/*.glass {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+}*/
+
+/* Primarily for the iframe on the home page */
+.contained-iframe {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
 }
