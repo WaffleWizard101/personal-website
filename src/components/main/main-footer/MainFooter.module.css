@@ -1,0 +1,6 @@
+.mainFooter {
+  text-align: center;
+  padding: var(--spacing-lg) 0;
+  opacity: 0.4;
+  font-size: 0.8rem;
+}

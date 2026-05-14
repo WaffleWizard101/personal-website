@@ -2,12 +2,15 @@ import {
   ErrorBoundary,
   hydrate,
   LocationProvider,
+  Route,
   Router,
   prerender as ssr,
 } from "preact-iso";
 import "./style.css";
 import { Home } from "./home/Home";
 import { About } from "./pages/About";
+import { MainFooter } from "./components/main/main-footer/MainFooter";
+import { Contact } from "./pages/Contact";
 
 /**
  * Header Component
@@ -16,24 +19,22 @@ import { About } from "./pages/About";
 function Header() {
   return (
     <header class="header">
-      <div class="logo">SAMUEL M.</div>
-      <nav style={{ display: "flex", gap: "1.5rem" }}>
-        <a
-          href="#work"
-          style={{ textDecoration: "none", color: "inherit", fontWeight: 500 }}
-        >
+      <a href="/" class="logo">
+        SAMUEL M.
+        {/*<div>*/}
+        {/*<a href="/">
+          Home
+        </a>*/}
+        {/*</div>*/}
+      </a>
+      <nav>
+        <a href="/" class="header-link">
           Work
         </a>
-        <a
-          href="/about"
-          style={{ textDecoration: "none", color: "inherit", fontWeight: 500 }}
-        >
+        <a href="/about" class="header-link">
           About
         </a>
-        <a
-          href="#contact"
-          style={{ textDecoration: "none", color: "inherit", fontWeight: 500 }}
-        >
+        <a href="/contact" class="header-link">
           Contact
         </a>
       </nav>
@@ -47,19 +48,11 @@ export function App() {
       <ErrorBoundary onError={(e) => console.error(e)}>
         <Header />
         <Router>
-          <Home path="/" />
-          <About path="/about" />
+          <Route path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
         </Router>
-        <footer
-          style={{
-            textAlign: "center",
-            padding: "var(--spacing-lg) 0",
-            opacity: 0.4,
-            fontSize: "0.8rem",
-          }}
-        >
-          &copy; 2026 Samuel M. Built with Preact & Modern CSS.
-        </footer>
+        <MainFooter />
       </ErrorBoundary>
     </LocationProvider>
   );

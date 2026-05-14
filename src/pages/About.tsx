@@ -1,12 +1,6 @@
 export function About() {
   return (
-    <div
-      class="container"
-      style={{
-        width: "max-content",
-        padding: "4vw",
-      }}
-    >
+    <main class="container">
       <h1>About Me</h1>
 
       <p>
@@ -37,7 +31,7 @@ export function About() {
         me to adopt Linux in April.
       </p>
 
-      <h2>About My Work</h2>
+      <h2 id="my-work">About My Work</h2>
       <p>
         I carry a different perspective about software development than a
         stereotypical hype-driven web developer or vibe coder. I'm averse to
@@ -69,6 +63,6 @@ export function About() {
         <a href="/contact#contact-details">See here</a> to contact me, or simply{" "}
         <a href="mailto:sammurray360@gmail.com">send me an email</a>.
       </p>
-    </div>
+    </main>
   );
 }
